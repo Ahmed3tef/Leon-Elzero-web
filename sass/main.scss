@@ -1,0 +1,349 @@
+// // main styles
+
+// *,
+// *::after,
+// *::before {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// html {
+//   font-size: 62.5%; // 1rem = 10px
+// }
+
+// body {
+//   font-family: 'Work Sans', sans-serif;
+//   font-size: 1.6rem;
+// }
+
+//////////// vars /////////////
+
+$main-color: #14b9a9;
+$main-color-light: #12e0cc;
+$main-color-dark: #1f9b8e;
+
+$p-color: #aaa;
+$p-color-2: #eee;
+
+$card-color: #181c1f;
+
+$gradient-color: linear-gradient(to right, $main-color-light, $main-color-dark);
+
+$m-top-content: 70px;
+$m-top-section: 60px;
+
+//////////// mixins /////////////
+
+@mixin gradient-text {
+  display: inline-block;
+  background-image: $gradient-color;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@mixin card-style {
+  background-color: $card-color;
+  border-radius: 5px;
+  line-height: 1.9;
+  color: $p-color;
+  transition: all 0.23s;
+}
+
+// components
+body::before {
+  content: '';
+  height: 60px;
+  display: block;
+}
+
+p {
+  color: $p-color;
+}
+
+//////////// landing /////////////
+
+.landing {
+  background-image: url(../images/landing2.jpg);
+  background-size: cover;
+  height: 91.7vh;
+  position: relative;
+  &__text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 340px;
+    h1 {
+      color: $main-color;
+    }
+  }
+}
+
+//////////// cards /////////////
+
+.cards {
+  @include card-style;
+  overflow: hidden;
+  @media (min-width: 768px) {
+    min-height: 350px;
+  }
+  &:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.7);
+  }
+  i {
+    color: $main-color;
+    text-align: center;
+  }
+  h3 {
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 1.1px;
+    @include gradient-text;
+  }
+}
+
+.special-text {
+  h3 {
+    font-weight: 800;
+    font-size: 100px;
+    letter-spacing: 3px;
+    @include gradient-text;
+    @media (max-width: 767px) {
+      font-size: 60px;
+    }
+  }
+  p {
+    font-size: 20px;
+    letter-spacing: 5px;
+
+    margin-top: -20px;
+    @media (max-width: 767px) {
+      font-size: 16px;
+      letter-spacing: 3px;
+      margin-top: -15px;
+    }
+  }
+}
+
+//////////// services /////////////
+
+.services {
+  &__content {
+    margin-top: $m-top-content;
+    &-box {
+      @include card-style;
+      display: flex;
+
+      padding: 20px;
+      margin-bottom: 20px;
+
+      &:hover {
+        transform: translate(-5px, -5px);
+        box-shadow: 0 7px 15px rgba(0, 0, 0, 0.7);
+      }
+      @media (max-width: 767px) {
+        flex-direction: column;
+        text-align: center;
+      }
+      i {
+        // margin-right: 20px;
+        color: $main-color;
+        flex-basis: 65px;
+      }
+    }
+  }
+  &__text {
+    flex: 1;
+    h3 {
+      margin-bottom: 10px;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: 1.1px;
+      @include gradient-text;
+    }
+  }
+  &__img {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    @media (max-width: 990px) {
+      display: none;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+//////////// portfolio /////////////
+
+.portfolio {
+  margin-top: $m-top-section;
+  &__content {
+    margin-top: $m-top-content;
+  }
+  &__img {
+    img {
+      max-width: 100%;
+    }
+  }
+}
+//////////// about /////////////
+
+.about {
+  margin-top: $m-top-section;
+  &__content {
+    margin-top: $m-top-content;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: 991px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__img {
+    position: relative;
+    width: 250px;
+    height: 370px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    @media (max-width: 990px) {
+      margin: 20px auto 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    &::before {
+      content: '';
+      height: 470px;
+      width: 80px;
+      position: absolute;
+      top: -50px;
+      left: -20px;
+      background-color: rgba(75, 67, 78, 0.719);
+      z-index: -1;
+      @media (max-width: 532px) {
+        z-index: -2;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 300px;
+      width: 170px;
+      border-bottom: 80px solid $main-color;
+      border-left: 80px solid $main-color;
+      right: -120px;
+      top: -20px;
+      z-index: -1;
+      @media (max-width: 576px) {
+        border-left: none;
+        border-bottom: 70px solid $main-color;
+        width: 340px;
+        right: -30px;
+
+        // bottom: -30px;
+        top: 26%;
+      }
+    }
+  }
+
+  &__text {
+    flex: 1;
+    padding-left: 200px;
+    @media (max-width: 990px) {
+      padding: 80px 0;
+    }
+
+    p:first-of-type {
+      color: $p-color-2;
+      font-weight: 700;
+      line-height: 2.5;
+      margin-bottom: 30px;
+    }
+    p:last-of-type {
+      line-height: 2;
+      margin-top: 30px;
+      font-weight: 300;
+    }
+  }
+  span {
+    width: 40%;
+    height: 2.7px;
+    background-image: $gradient-color;
+    display: inline-block;
+  }
+}
+
+//////////// contact /////////////
+
+.contact {
+  &__content {
+    margin-top: 100px;
+    > p {
+      @include gradient-text;
+      font-size: 40px;
+      font-weight: 800;
+      display: block;
+      @media (max-width: 767px) {
+        font-size: 25px;
+      }
+    }
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: $p-color-2;
+    font-size: 35px;
+    font-weight: 800;
+    transform: translateY(0);
+    transition: transform 0.2s;
+    @media (max-width: 767px) {
+      font-size: 25px;
+    }
+
+    &:hover {
+      color: $p-color-2;
+    }
+  }
+  .social {
+    margin: 20px 0;
+    p {
+      display: inline-block;
+      margin-right: 20px;
+      font-size: 17px;
+    }
+    i {
+      @include gradient-text;
+      font-size: 25px;
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+//////////// footer /////////////
+
+footer {
+  background-color: $card-color;
+  color: $p-color;
+  font-size: 17px;
+  span {
+    @include gradient-text;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  img {
+    margin-left: 20px;
+    width: 30px;
+  }
+}
